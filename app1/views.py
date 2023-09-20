@@ -2,10 +2,18 @@ from django.shortcuts import render,HttpResponse,redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
+import folium
+
+
+
+
 # Create your views here.
 @login_required(login_url='login')
-def HomePage(request):
-    return render (request,'home.html')
+def findyourbus(request):
+     if request.method=='POST':
+         return redirect('route')
+     
+     return render (request,'findyourbus.html')
 
 def SignupPage(request):
     if request.method=='POST':
@@ -34,7 +42,7 @@ def LoginPage(request):
         user=authenticate(request,username=username,password=pass1)
         if user is not None:
             login(request,user)
-            return redirect('home')
+            return redirect('findyourbus')
         else:
             return HttpResponse ("Username or Password is incorrect!!!")
 
@@ -43,3 +51,34 @@ def LoginPage(request):
 def LogoutPage(request):
     logout(request)
     return redirect('login')
+
+@login_required(login_url='login')
+def route(request):
+    import pandas as pd
+    df = pd.read_csv(r'c:\Users\user\Documents\busroute2.csv')
+
+    data = pd.DataFrame.from_records(df[1:])
+    m = folium.Map(location=[22.4934288,88.2871806],
+               zoom_start=13)
+    place_lat = data['latitude'].astype(float).tolist()
+
+    place_lng = data['longitude'].astype(float).tolist()    
+    points = []
+    for i in range(len(place_lat)):
+     points.append([place_lat[i], place_lng[i]])
+    
+    for index,lat in enumerate(place_lat):
+     folium.Marker([lat, 
+                   place_lng[index]],
+                  popup=('route'.format(index))
+                  ,icon = folium.Icon(color='blue',icon_color='white',prefix='fa', icon='bus')
+                  ).add_to(m)
+    
+    folium.PolyLine(points, color='blue',dash_array='5',opacity ='.85',
+                tooltip ='Transit Route 101'
+                ).add_to(m)
+
+    m.save('route.html')
+    return render(request,'route.html')
+
+    

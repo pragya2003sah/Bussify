@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Get Location</title>
+  <!-- Include Mapbox GL CSS -->
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
+  <!-- Include your custom CSS -->
+  <link rel="stylesheet" href="styles.css">
+  <script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
+  <script
+    src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.js"></script>
+  <link rel="stylesheet"
+    href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.css"
+    type="text/css" />
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+
+    #map {
+      height: 90vh;
+      width: 100vw;
+      /* display: relative; */
+    }
+
+    #btn {
+      background-color: rgb(0, 140, 255);
+      border-radius: 10px;
+      color: white;
+      border: none;
+      padding: 10px 30px;
+
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+    }
+  </style>
+  <script defer>
+    mapboxgl.accessToken =
+      "pk.eyJ1IjoiZGlhbmF2aWxlIiwiYSI6ImNqaWZ0bm1ycDEwZmczcXFsYTBpOXVtMTgifQ.aLCSo3xuIkz9e4RGzbFIpg"
+
+    navigator.geolocation.getCurrentPosition(successLocation, errorLocation, {
+      enableHighAccuracy: true
+    })
+
+    function successLocation(position) {
+      setupMap([position.coords.longitude, position.coords.latitude])
+    }
+
+    function errorLocation() {
+      setupMap([-2.24, 53.48])
+    }
+
+    function setupMap(center) {
+      const map = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/mapbox/streets-v11",
+        center: center,
+        zoom: 15
+      })
+
+      const nav = new mapboxgl.NavigationControl()
+      map.addControl(nav)
+
+      var directions = new MapboxDirections({
+        accessToken: mapboxgl.accessToken
+      })
+
+      map.addControl(directions, "top-left")
+    }
+
+  </script>
+</head>
+
+<body>
+  <div id='map'>
+
+</div>
+<div class="button-container">
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" id="btn">Find Buses</button>
+  </form>
+</div>
+   
+
+  </div>
+
+</body>
