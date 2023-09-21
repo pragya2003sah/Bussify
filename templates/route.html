@@ -3,7 +3,7 @@
 <head>
     
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    
+     
         <script>
             L_NO_TOUCH = false;
             L_DISABLE_3D = false;
@@ -27,17 +27,36 @@
             <style>
                 #map_ef1d5a92e3d273bafd0402e37d85f115 {
                     position: relative;
-                    width: 70.0%;
-                    height: 60.0%;
-                    left: 50.0%;
-                    top: 40.0%;
+                    width: 100.0%;
+                    height: 80.0%;
+                    left: 0.0%;
+                    top: 0.0%;
                 }
                 .leaflet-container { font-size: 1rem; }
             </style>
         
 </head>
 <body>
+    <h2>List of buses</h2>
+    <table class="table table-striped">
+        <thead style="background-color: blue;color: white;">
+        <td>BUS STOPS</td>
+        <td>DISTANCE BETWEEN STOPS(IN KM)</td>
+        <td>BUS NAME</td>
+        <td>ESTIMATED TIME OF ARRIVAL</td>
     
+       </thead>
+    
+        {% for index in app %}
+        <tr>
+            <td>{{index.route}}</td>
+            <td>{{index.distance}}</td>
+            <td>{{index.bustroute}}</td>
+            <td>{{index.arrivaltime}}</td>
+            
+        </tr>
+        {% endfor %}
+    </table>
     
             <div class="folium-map" id="map_ef1d5a92e3d273bafd0402e37d85f115" ></div>
         
@@ -82,7 +101,7 @@
 
         
             
-                var html_baa9b39a470b781bbbc7384e36d673d5 = $(`<div id="html_baa9b39a470b781bbbc7384e36d673d5" style="width: 100.0%; height: 100.0%;">chak rajumolla,mahestola </div>`)[0];
+                var html_baa9b39a470b781bbbc7384e36d673d5 = $(`<div id="html_baa9b39a470b781bbbc7384e36d673d5" style="width: 100.0%; height: 100.0%;">pailan  </div>`)[0];
                 popup_d21c0880cdb52307a015e61083fa4576.setContent(html_baa9b39a470b781bbbc7384e36d673d5);
             
         
@@ -109,7 +128,7 @@
 
         
             
-                var html_bb0a463e389252719b8131853ed7a9a3 = $(`<div id="html_bb0a463e389252719b8131853ed7a9a3" style="width: 100.0%; height: 100.0%;">3a,thakurpukur </div>`)[0];
+                var html_bb0a463e389252719b8131853ed7a9a3 = $(`<div id="html_bb0a463e389252719b8131853ed7a9a3" style="width: 100.0%; height: 100.0%;">3a,thakupukur  </div>`)[0];
                 popup_515cde884f96bcb1b18cb3d6fac1f3f4.setContent(html_bb0a463e389252719b8131853ed7a9a3);
             
         
@@ -136,7 +155,7 @@
 
         
             
-                var html_6d8d27aa1dba31daec622816278077ee = $(`<div id="html_6d8d27aa1dba31daec622816278077ee" style="width: 100.0%; height: 100.0%;">behala chowrasta</div>`)[0];
+                var html_6d8d27aa1dba31daec622816278077ee = $(`<div id="html_6d8d27aa1dba31daec622816278077ee" style="width: 100.0%; height: 100.0%;">behala chowrasta </div>`)[0];
                 popup_b396af149bad1f2bea901cb6ac82877f.setContent(html_6d8d27aa1dba31daec622816278077ee);
             
         
@@ -163,7 +182,7 @@
 
         
             
-                var html_d363a154878d171265dac62fb38470b9 = $(`<div id="html_d363a154878d171265dac62fb38470b9" style="width: 100.0%; height: 100.0%;">Taratala </div>`)[0];
+                var html_d363a154878d171265dac62fb38470b9 = $(`<div id="html_d363a154878d171265dac62fb38470b9" style="width: 100.0%; height: 100.0%;">taratala  </div>`)[0];
                 popup_dc3ab6b68ad5191d00e8371201ef48f1.setContent(html_d363a154878d171265dac62fb38470b9);
             
         
@@ -190,7 +209,7 @@
 
         
             
-                var html_84f795ddea620f21f7c487b18f3ff80a = $(`<div id="html_84f795ddea620f21f7c487b18f3ff80a" style="width: 100.0%; height: 100.0%;">Mominpore </div>`)[0];
+                var html_84f795ddea620f21f7c487b18f3ff80a = $(`<div id="html_84f795ddea620f21f7c487b18f3ff80a" style="width: 100.0%; height: 100.0%;">mominpur </div>`)[0];
                 popup_76887b4eb529876d2b36ced5868d2f70.setContent(html_84f795ddea620f21f7c487b18f3ff80a);
             
         
@@ -217,7 +236,7 @@
 
         
             
-                var html_aa7729607890d9fed7c7e08c66af8bea = $(`<div id="html_aa7729607890d9fed7c7e08c66af8bea" style="width: 100.0%; height: 100.0%;">kala Bagan </div>`)[0];
+                var html_aa7729607890d9fed7c7e08c66af8bea = $(`<div id="html_aa7729607890d9fed7c7e08c66af8bea" style="width: 100.0%; height: 100.0%;">kala bagan  </div>`)[0];
                 popup_8717978ee5e91ccf0e8ab7861d64c6b6.setContent(html_aa7729607890d9fed7c7e08c66af8bea);
             
         
@@ -244,7 +263,7 @@
 
         
             
-                var html_7f9833ad0047fde686f3849154d07c34 = $(`<div id="html_7f9833ad0047fde686f3849154d07c34" style="width: 100.0%; height: 100.0%;">chetla </div>`)[0];
+                var html_7f9833ad0047fde686f3849154d07c34 = $(`<div id="html_7f9833ad0047fde686f3849154d07c34" style="width: 100.0%; height: 100.0%;">chetla   </div>`)[0];
                 popup_cc795fd5bf4ac66959cac7da1fa8fb55.setContent(html_7f9833ad0047fde686f3849154d07c34);
             
         
@@ -269,4 +288,5 @@
             );
         
 </script>
+
 </html>

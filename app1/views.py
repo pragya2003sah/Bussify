@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 import folium
+from .models import app1
 
 
 
@@ -79,6 +80,14 @@ def route(request):
                 ).add_to(m)
 
     m.save('route.html')
-    return render(request,'route.html')
+    #fetching data from database
+    #from django.core import serializers
+    #table = serializers.serialize('python',app1.objects.all())
+    
+    #context= {
+     #   'table':table,
+    #}
+    app=app1.objects.all()
+    return render(request,'route.html', {'app': app})
 
     
